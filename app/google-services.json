@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "807390337122",
+    "project_id": "goldwing-24a26",
+    "storage_bucket": "goldwing-24a26.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:807390337122:android:cd63dbfc3e83423ecc193b",
+        "android_client_info": {
+          "package_name": "com.ghazy.goldwing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "807390337122-3vjik9h30lc51juiqgbp2o3rgvlv83iv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQAiC_DHBsX8xuPLI89Qw5k8_Sli_A_Q4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "807390337122-3vjik9h30lc51juiqgbp2o3rgvlv83iv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:807390337122:android:71e870ea8aa50166cc193b",
+        "android_client_info": {
+          "package_name": "com.ghazy.goldwing3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "807390337122-3vjik9h30lc51juiqgbp2o3rgvlv83iv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQAiC_DHBsX8xuPLI89Qw5k8_Sli_A_Q4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "807390337122-3vjik9h30lc51juiqgbp2o3rgvlv83iv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
