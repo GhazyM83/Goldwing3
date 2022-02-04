@@ -123,19 +123,16 @@ public class Signup extends AppCompatActivity {
                         public void onSuccess(
                                 UploadTask.TaskSnapshot taskSnapshot)
                         {
-
                             // Image uploaded successfully
                             // Dismiss dialog
                             progressDialog.dismiss();
-                            Toast.makeText(getApplicationContext(), "Image Uploaded!!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Image Uploaded!", Toast.LENGTH_SHORT).show();
                         }
                     })
-
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e)
                         {
-
                             // Error, Image not uploaded
                             progressDialog.dismiss();
                             Toast.makeText(getApplicationContext(), "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -175,7 +172,8 @@ public class Signup extends AppCompatActivity {
                         ivPhoto.setBackground(null);
                         ivPhoto.setImageBitmap(bitmap);
                         uploadImage();
-                    } catch (IOException e) {
+                    }
+                    catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
