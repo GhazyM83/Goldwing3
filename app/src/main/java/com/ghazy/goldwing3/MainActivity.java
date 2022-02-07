@@ -24,4 +24,9 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(getApplicationContext(), Signup.class);
         startActivity(i);
     }
+
+    public void goToAddSong(View view) {
+        Intent i = new Intent(getApplicationContext(), AddSong.class);
+        startActivity(i);
+    }
 }

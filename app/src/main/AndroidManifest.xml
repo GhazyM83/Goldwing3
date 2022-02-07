@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Goldwing3">
         <activity
+            android:name=".AddSong"
+            android:exported="false" />
+        <activity
+            android:name=".Home"
+            android:exported="false" />
+        <activity
             android:name=".Login"
             android:exported="false" />
         <activity

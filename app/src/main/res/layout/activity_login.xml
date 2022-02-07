@@ -9,24 +9,23 @@
 
     <ImageView
         android:id="@+id/ivFirstMixMain"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="33dp"
+        android:layout_width="419dp"
+        android:layout_height="460dp"
+        android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toTopOf="@+id/etEmailLogin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/albums2" />
 
     <EditText
         android:id="@+id/etEmailLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="210dp"
+        android:layout_height="50dp"
         android:layout_marginStart="104dp"
         android:layout_marginEnd="98dp"
         android:layout_marginBottom="37dp"
         android:ems="10"
-        android:hint="email..."
+        android:hint="Email..."
         android:inputType="textPersonName"
         android:textColor="@color/gold"
         android:textColorHint="@color/gold"
@@ -36,28 +35,34 @@
 
     <EditText
         android:id="@+id/etPasswordLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="210dp"
+        android:layout_height="50dp"
         android:layout_marginStart="104dp"
         android:layout_marginEnd="98dp"
+        android:layout_marginBottom="42dp"
         android:ems="10"
-        android:hint="password..."
+        android:hint="Password..."
         android:inputType="textPassword"
         android:textColor="@color/gold"
         android:textColorHint="@color/gold"
+        app:layout_constraintBottom_toTopOf="@+id/btnLoginLogin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="517dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnLoginLogin"
-        android:layout_width="190dp"
-        android:layout_height="50dp"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginEnd="111dp"
+        android:layout_marginBottom="77dp"
         android:backgroundTint="@color/gold"
         android:onClick="login"
         android:text="Log in"
         android:textColor="@color/dark"
-        tools:layout_editor_absoluteX="110dp"
-        tools:layout_editor_absoluteY="614dp" />
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
