@@ -3,7 +3,7 @@ package com.ghazy.goldwing3;
 import androidx.annotation.NonNull;
 
 enum songCategory{
-    pop, rnb, rock, country, jazz, soul
+    Pop, RnB, Rock, Country, Jazz, Soul, Rap, Kpop
 }
 
 public class Song {
