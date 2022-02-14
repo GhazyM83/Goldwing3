@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/ivCoverHome"
+        android:id="@+id/ivCoverRow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="0dp"
@@ -14,7 +14,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/tvSongNameHome"
+        android:id="@+id/tvSongNameRow"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:text="TextView"
@@ -22,7 +22,7 @@
         tools:layout_editor_absoluteY="16dp" />
 
     <TextView
-        android:id="@+id/tvArtistNameHome"
+        android:id="@+id/tvArtistNameRow"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:text="TextView"
@@ -30,7 +30,7 @@
         tools:layout_editor_absoluteY="66dp" />
 
     <ImageView
-        android:id="@+id/ivPlayHome"
+        android:id="@+id/ivPlayRow"
         android:layout_width="113dp"
         android:layout_height="81dp"
         app:srcCompat="@drawable/playbutton"

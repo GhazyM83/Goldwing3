@@ -11,13 +11,15 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
     private List<Song> mData;
     private LayoutInflater mInflater;
-    private Adapter.ItemClickListener mClickListener;
+    private ItemClickListener mClickListener;
     private FirebaseServices fbs;
     private Context context;
 
@@ -41,7 +43,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         fbs = FirebaseServices.getInstance();
         Song song = mData.get(position);
         holder.tvName.setText(song.getSongName());
-        //Glide.with(context).load("gs://loginsignupapp-3ecac.appspot.com/" + song.getSongCover()).into(holder.ivPhoto);
+        holder.tvArtist.setText(song.getSongName());
+        Picasso.get().load(song.getSongCover()).into(holder.ivCover);
     }
 
     // total number of rows
@@ -53,13 +56,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView tvName;
-        ImageView ivPhoto;
+        TextView tvName, tvArtist;
+        ImageView ivCover;
 
         ViewHolder(View itemView) {
             super(itemView);
-            tvName = itemView.findViewById(R.id.tvNameAllSongs);
-            ivPhoto = itemView.findViewById(R.id.ivPhotoAllSongs);
+            tvName = itemView.findViewById(R.id.tvSongNameRow);
+            tvArtist = itemView.findViewById(R.id.tvArtistNameRow);
+            ivCover = itemView.findViewById(R.id.ivCoverRow);
             itemView.setOnClickListener(this);
         }
 
