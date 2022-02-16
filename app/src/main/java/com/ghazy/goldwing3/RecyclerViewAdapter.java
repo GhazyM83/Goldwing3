@@ -2,6 +2,7 @@ package com.ghazy.goldwing3;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,18 +14,30 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
     private List<Song> mData;
     private LayoutInflater mInflater;
-    private ItemClickListener mClickListener;
-    private FirebaseServices fbs;
     private Context context;
 
+    private final RecyclerViewAdapter.ItemClickListener mClickListener = new ItemClickListener() {
+        @Override
+        public void onItemClick(View view, int position) {
+            // get restaurant data
+            Song song = mData.get(position);
+            // upload restaurant data
+            // goto details activity
+            Intent i = new Intent(context, SongDetails.class);
+            i.putExtra("song", (Serializable)song);
+            context.startActivity(i);
+        }
+    };
+
     // data is passed into the constructor
-    void Adapter(Context context, List<Song> data) {
+    RecyclerViewAdapter(Context context, List<Song> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
         this.context = context;
@@ -40,7 +53,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        fbs = FirebaseServices.getInstance();
         Song song = mData.get(position);
         holder.tvName.setText(song.getSongName());
         holder.tvArtist.setText(song.getSongName());
@@ -79,9 +91,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     // allows clicks events to be caught
+    /*
     void setClickListener(ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
     }
+    */
+
 
     // parent activity will implement this method to respond to click events
     public interface ItemClickListener {

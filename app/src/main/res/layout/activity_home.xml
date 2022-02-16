@@ -11,9 +11,24 @@
         android:id="@+id/tvNameHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="185dp"
+        android:text="Welcome, Ghazy!"
         android:textColor="@color/white"
         android:textSize="24sp"
-        tools:layout_editor_absoluteX="44dp"
-        tools:layout_editor_absoluteY="38dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvFirstSongsHome"
+        android:layout_width="378dp"
+        android:layout_height="158dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginBottom="446dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -160,7 +160,7 @@ public class AddSong extends AppCompatActivity {
             if (resultCode == Activity.RESULT_OK) {
                 if (data != null) {
                         filePath = data.getData();
-                        Picasso.get().load(filePath).resize(50,0).into(ivCover);
+                        Picasso.get().load(filePath).into(ivCover);
                         uploadImage();
                 }
             } else if (resultCode == Activity.RESULT_CANCELED)  {
