@@ -29,7 +29,7 @@ import com.squareup.picasso.Picasso;
 import java.io.IOException;
 import java.util.UUID;
 
-public class AddSong extends AppCompatActivity {
+public class AddCollection extends AppCompatActivity {
 
     private static final String TAG = "AddSong";
     private EditText etName, etArtist, etAlbum, etDate;
@@ -39,7 +39,6 @@ public class AddSong extends AppCompatActivity {
     private Uri filePath;
     private StorageReference storageReference;
     private String StorageCode;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +81,7 @@ public class AddSong extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "Document added" + documentReference.getId());
+                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -103,7 +102,7 @@ public class AddSong extends AppCompatActivity {
             progressDialog.show();
 
             // Defining the child of storageReference
-            StorageReference ref = storageReference.child(StorageCode);
+            StorageReference ref = storageReference.child("images/" + UUID.randomUUID().toString());
 
             // adding listeners on upload
             // or failure of image
