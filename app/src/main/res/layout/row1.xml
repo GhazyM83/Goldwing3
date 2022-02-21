@@ -5,35 +5,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/ivCoverRow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp"
-        tools:srcCompat="@tools:sample/avatars" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tvSongNameRow"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="16dp" />
+        <ImageView
+            android:id="@+id/ivCoverRow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="603dp"
+            tools:srcCompat="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/tvArtistNameRow"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="66dp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/ivPlayRow"
-        android:layout_width="113dp"
-        android:layout_height="81dp"
-        app:srcCompat="@drawable/playbutton"
-        tools:layout_editor_absoluteX="297dp"
-        tools:layout_editor_absoluteY="27dp" />
+            <TextView
+                android:id="@+id/tvArtistNameRow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="19dp"
+                android:layout_marginBottom="615dp"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/tvSongNameRow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="19dp"
+                android:layout_marginTop="16dp"
+                android:text="TextView" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivPlayRow"
+            android:layout_width="113dp"
+            android:layout_height="81dp"
+            android:layout_marginTop="27dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="623dp"
+            app:srcCompat="@drawable/PlayButton" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

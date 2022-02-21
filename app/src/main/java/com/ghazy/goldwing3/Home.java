@@ -16,12 +16,15 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Home extends AppCompatActivity {
-    private RecyclerView rvAllRest;
+    private RecyclerView rvAllSongs;
     RecyclerViewAdapter adapter;
     FirebaseServices fbs;
     ArrayList<Song> songs;
+    MyCallback myCallback;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +35,15 @@ public class Home extends AppCompatActivity {
         fbs = FirebaseServices.getInstance();
         songs = new ArrayList<Song>();
         readData();
-
-        // set up the RecyclerView
-        RecyclerView recyclerView = findViewById(R.id.rvFirstSongsHome);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new RecyclerViewAdapter(this, songs);
-        recyclerView.setAdapter(adapter);
+        myCallback = new MyCallback() {
+            @Override
+            public void onCallback(List<Song> restsList) {
+                RecyclerView recyclerView = findViewById(R.id.rvFirstSongsHome);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                adapter = new RecyclerViewAdapter(getApplicationContext(), songs);
+                recyclerView.setAdapter(adapter);
+            }
+        };
     }
 
     private void readData() {
@@ -51,6 +57,8 @@ public class Home extends AppCompatActivity {
                                 for (QueryDocumentSnapshot document : task.getResult()) {
                                     songs.add(document.toObject(Song.class));
                                 }
+                                myCallback.onCallback(songs);
+
                             } else {
                                 Log.e("AllRestActivity: readData()", "Error getting documents.", task.getException());
                             }

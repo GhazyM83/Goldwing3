@@ -29,7 +29,7 @@ import com.squareup.picasso.Picasso;
 import java.io.IOException;
 import java.util.UUID;
 
-public class AddCollection extends AppCompatActivity {
+public class AddSong extends AppCompatActivity {
 
     private static final String TAG = "AddSong";
     private EditText etName, etArtist, etAlbum, etDate;
