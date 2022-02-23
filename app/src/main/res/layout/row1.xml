@@ -6,48 +6,49 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_width="254dp"
+        android:layout_height="43dp"
+        android:layout_marginEnd="58dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/ivCoverRow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="603dp"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:layout_weight="1"
             tools:srcCompat="@tools:sample/avatars" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="140dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvArtistNameRow"
-                android:layout_width="wrap_content"
+                android:id="@+id/tvSongNameRow"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="19dp"
-                android:layout_marginBottom="615dp"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textColor="@color/gold" />
 
             <TextView
-                android:id="@+id/tvSongNameRow"
-                android:layout_width="wrap_content"
+                android:id="@+id/tvArtistNameRow"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="19dp"
-                android:layout_marginTop="16dp"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textColor="@color/gold" />
 
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/ivPlayRow"
-            android:layout_width="113dp"
-            android:layout_height="81dp"
-            android:layout_marginTop="27dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginBottom="623dp"
-            app:srcCompat="@drawable/PlayButton" />
+            android:id="@+id/imageView2"
+            android:layout_width="71dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/pb" />
 
     </LinearLayout>
 

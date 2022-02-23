@@ -55,7 +55,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(ViewHolder holder, int position) {
         Song song = mData.get(position);
         holder.tvName.setText(song.getSongName());
-        holder.tvArtist.setText(song.getSongName());
+        holder.tvArtist.setText(song.getArtistName());
         Picasso.get().load(song.getSongCover()).into(holder.ivCover);
     }
 
