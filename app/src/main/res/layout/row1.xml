@@ -6,8 +6,8 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="254dp"
-        android:layout_height="43dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="58dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -16,14 +16,14 @@
 
         <ImageView
             android:id="@+id/ivCoverRow"
-            android:layout_width="43dp"
-            android:layout_height="43dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             tools:srcCompat="@tools:sample/avatars" />
 
         <LinearLayout
             android:layout_width="140dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -45,7 +45,7 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="71dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             app:srcCompat="@drawable/pb" />

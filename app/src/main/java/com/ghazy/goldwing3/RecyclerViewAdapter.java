@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.io.Serializable;
@@ -22,6 +23,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private List<Song> mData;
     private LayoutInflater mInflater;
     private Context context;
+    private FirebaseServices fbs = FirebaseServices.getInstance();
+    private StorageReference storageRef = fbs.getStorage().getReference();
 
     private final RecyclerViewAdapter.ItemClickListener mClickListener = new ItemClickListener() {
         @Override
@@ -56,7 +59,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Song song = mData.get(position);
         holder.tvName.setText(song.getSongName());
         holder.tvArtist.setText(song.getArtistName());
-        Picasso.get().load(song.getSongCover()).into(holder.ivCover);
+        Picasso.get().load(String.valueOf(storageRef.child(song.getSongCover()).getDownloadUrl())).into(holder.ivCover);
     }
 
     // total number of rows
