@@ -29,12 +29,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private final RecyclerViewAdapter.ItemClickListener mClickListener = new ItemClickListener() {
         @Override
         public void onItemClick(View view, int position) {
-            // get restaurant data
             Song song = mData.get(position);
-            // upload restaurant data
-            // goto details activity
             Intent i = new Intent(context, SongDetails.class);
             i.putExtra("song", (Serializable)song);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(i);
         }
     };

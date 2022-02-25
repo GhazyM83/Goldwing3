@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 public class SongDetails extends AppCompatActivity {
     private TextView tvSongName, tvArtistName, tvSongLength, tvAlbumName;
     private ImageView ivCover;
-
+    private FirebaseServices fbs = FirebaseServices.getInstance();
+    private StorageReference storageRef = fbs.getStorage().getReference();
     /*
         private String address;
     private RestCat category;
@@ -28,13 +30,13 @@ public class SongDetails extends AppCompatActivity {
         connectComponents();
         Intent i = this.getIntent();
 
-        Song rest = (Song) i.getSerializableExtra("song");
+        Song song = (Song) i.getSerializableExtra("song");
 
-        tvSongName.setText(rest.getSongName());
-        tvArtistName.setText(rest.getArtistName());
-        tvSongLength.setText(rest.getSongLength());
-        tvAlbumName.setText(rest.getAlbumName());
-        Picasso.get().load(rest.getSongCover()).into(ivCover);
+        tvSongName.setText(song.getSongName());
+        tvArtistName.setText(song.getArtistName());
+        tvSongLength.setText(song.getSongLength());
+        tvAlbumName.setText(song.getAlbumName());
+        Picasso.get().load(String.valueOf(storageRef.child(song.getSongCover()).getDownloadUrl())).into(ivCover);
     }
 
     private void connectComponents() {
