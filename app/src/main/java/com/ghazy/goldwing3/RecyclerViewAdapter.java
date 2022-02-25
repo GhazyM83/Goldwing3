@@ -31,7 +31,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public void onItemClick(View view, int position) {
             Song song = mData.get(position);
             Intent i = new Intent(context, SongDetails.class);
-            i.putExtra("song", (Serializable)song);
+            //i.putExtra("song", song);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(i);
         }
@@ -48,7 +48,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.row1, parent, false);
-        return new ViewHolder(view);
+        return new RecyclerViewAdapter.ViewHolder(view);
     }
 
     // binds the data to the TextView in each row

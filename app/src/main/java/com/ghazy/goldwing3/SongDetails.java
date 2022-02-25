@@ -15,12 +15,6 @@ public class SongDetails extends AppCompatActivity {
     private ImageView ivCover;
     private FirebaseServices fbs = FirebaseServices.getInstance();
     private StorageReference storageRef = fbs.getStorage().getReference();
-    /*
-        private String address;
-    private RestCat category;
-    private String photo;
-    private String phone;
-    * */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +23,6 @@ public class SongDetails extends AppCompatActivity {
 
         connectComponents();
         Intent i = this.getIntent();
-
         Song song = (Song) i.getSerializableExtra("song");
 
         tvSongName.setText(song.getSongName());
