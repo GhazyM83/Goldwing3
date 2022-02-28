@@ -32,7 +32,7 @@ import java.util.UUID;
 
 public class Signup extends AppCompatActivity {
     private static final String TAG = "AddUser";
-    private EditText etName, etEmail, etPassword, etDate;
+    private EditText etName, etEmail, etPassword, etDate, etBio;
     private ImageView ivPhoto;
     private FirebaseServices fbs;
     private Utilities utils;
@@ -48,6 +48,7 @@ public class Signup extends AppCompatActivity {
 
         etEmail = findViewById(R.id.etEmailSignup);
         etPassword = findViewById(R.id.etPasswordSignup);
+        etBio = findViewById(R.id.etBioSignup);
         etName = findViewById(R.id.etNameSignup);
         etDate = findViewById(R.id.etDateSignup);
         ivPhoto = findViewById(R.id.ivPicSignup);
@@ -59,8 +60,9 @@ public class Signup extends AppCompatActivity {
     }
 
     public void signup(View view) {
-        String name, email, password, date, photo;
+        String name, email, password, date, bio, photo;
         email = etEmail.getText().toString();
+        bio = etBio.getText().toString();
         password = etPassword.getText().toString();
         name = etName.getText().toString();
         date = etDate.getText().toString();
@@ -87,7 +89,7 @@ public class Signup extends AppCompatActivity {
                     }
                 });
 
-        User user = new User(name, email, password, date, photo);
+        User user = new User(name, email, password, date, bio, photo);
         fbs.getFire().collection("songs")
                 .add(user)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

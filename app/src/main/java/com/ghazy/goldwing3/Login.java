@@ -12,10 +12,13 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class Login extends AppCompatActivity {
     private EditText etEmail, etPassword;
-    private FirebaseServices fbs;
+    private FirebaseServices fbs = FirebaseServices.getInstance();
+    private FirebaseAuth auth = fbs.getAuth();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +40,14 @@ public class Login extends AppCompatActivity {
             return;
         }
 
-        fbs.getAuth().signInWithEmailAndPassword(username, password)
+        auth.signInWithEmailAndPassword(username, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(getApplicationContext(), "Welcome!", Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(getApplicationContext(), Home.class);
+                            i.putExtra("user", auth.getCurrentUser());
                             startActivity(i);
                         } else {
                             Toast.makeText(Login.this, "Username or password is empty!", Toast.LENGTH_SHORT).show();
@@ -51,6 +55,5 @@ public class Login extends AppCompatActivity {
                         }
                     }
                 });
-
     }
 }

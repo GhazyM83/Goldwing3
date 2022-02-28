@@ -3,17 +3,18 @@ package com.ghazy.goldwing3;
 public class User {
     private String fullName;
     private String email;
+    private String bio;
     private String password;
     private String birthday;
     private String photo;
 
     public User(){
-
     }
 
-    public User(String fullName, String email, String password, String birthday, String photo) {
+    public User(String fullName, String email, String password, String birthday, String bio, String photo) {
         this.fullName = fullName;
         this.email = email;
+        this.bio = bio;
         this.password = password;
         this.birthday = birthday;
         this.photo = photo;
@@ -49,6 +50,14 @@ public class User {
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 
     public String getPhoto() {
