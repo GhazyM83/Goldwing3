@@ -70,7 +70,12 @@ public class Signup extends AppCompatActivity {
             photo = "no_image";
         else photo = StorageCode;
 
-        if (!utils.EmailValidation(this, email) || !utils.PasswordValidation(this, password))
+        if (name.trim().isEmpty() || email.trim().isEmpty() || password.trim().isEmpty() || date.trim().isEmpty()) {
+            Toast.makeText(this, "Some fields are empty!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!utils.EmailValidation(getApplicationContext(), email) || !utils.PasswordValidation(getApplicationContext(), password))
             return;
 
         fbs.getAuth().createUserWithEmailAndPassword(email, password)
@@ -84,6 +89,9 @@ public class Signup extends AppCompatActivity {
                                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                         @Override
                                         public void onSuccess(DocumentReference documentReference) {
+                                            Toast.makeText(getApplicationContext(), "Account created successfully!", Toast.LENGTH_SHORT).show();
+                                            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                                            startActivity(i);
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
@@ -92,9 +100,6 @@ public class Signup extends AppCompatActivity {
                                             Log.w(TAG, "Failed to create a new account", e);
                                         }
                                     });
-                            Toast.makeText(getApplicationContext(), "Account created successfully!", Toast.LENGTH_SHORT).show();
-                            Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(i);
                         } else {
                             Toast.makeText(getApplicationContext(), "Failed to create a new account!", Toast.LENGTH_LONG).show();
                             return;

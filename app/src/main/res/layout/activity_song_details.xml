@@ -24,14 +24,14 @@
         android:layout_width="wrap_content"
         android:layout_height="51dp"
         android:layout_marginStart="55dp"
-        android:layout_marginTop="19dp"
         android:layout_marginEnd="11dp"
+        android:layout_marginBottom="18dp"
         android:text="Song Name"
         android:textColor="@color/gold"
         android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvAlbumNameSongDetails"
         app:layout_constraintEnd_toStartOf="@+id/tvArtistNameSongDetails"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivPhotoSongDetails" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tvArtistNameSongDetails"
@@ -39,14 +39,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="33dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="57dp"
         android:text="Artist Name"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/tvSongLengthSongDetails"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvSongNameSongDetails"
-        app:layout_constraintTop_toBottomOf="@+id/ivPhotoSongDetails"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/ivPhotoSongDetails" />
 
     <TextView
         android:id="@+id/tvAlbumNameSongDetails"
@@ -74,7 +73,6 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvAlbumNameSongDetails"
-        app:layout_constraintTop_toBottomOf="@+id/tvSongNameSongDetails"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/tvSongNameSongDetails" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

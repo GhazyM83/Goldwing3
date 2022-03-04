@@ -20,6 +20,7 @@ public class SongDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song_details);
+        getSupportActionBar().hide();
 
         connectComponents();
         Intent i = this.getIntent();
