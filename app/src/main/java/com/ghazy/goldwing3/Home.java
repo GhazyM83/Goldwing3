@@ -39,11 +39,14 @@ public class Home extends AppCompatActivity {
         readData();
         myCallback = new MyCallback() {
             @Override
-            public void onCallback(List<Song> restsList) {
+            public void onCallback(List<Song> songsList) {
                 RecyclerView recyclerView = findViewById(R.id.rvFirstSongsHome);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                 adapter = new RecyclerViewAdapter(getApplicationContext(), songs);
                 recyclerView.setAdapter(adapter);
+            }
+            @Override
+            public void onCallBackUser(User user) {
             }
         };
     }

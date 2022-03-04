@@ -21,56 +21,53 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Profile extends AppCompatActivity {
-    TextView tvName, tvEmail, tvBirthday, tvBio;
+    TextView tvName, tvEmail, tvPassword, tvBirthday, tvBio;
     ImageView ivPhoto;
-    FirebaseServices fbs;
-    ArrayList<User> users;
     MyCallback myCallback;
-
+    FirebaseServices fbs = FirebaseServices.getInstance();
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        getSupportActionBar().hide();
 
         tvName = findViewById(R.id.tvNameProfile);
         tvEmail = findViewById(R.id.tvEmailProfile);
+        tvPassword = findViewById(R.id.tvPasswordProfile);
         tvBirthday = findViewById(R.id.tvBirthdayProfile);
         tvBio = findViewById(R.id.tvBioProfile);
         ivPhoto = findViewById(R.id.ivPhotoProfile);
-        users = new ArrayList<User>();
+        readData();
         myCallback = new MyCallback() {
             @Override
-            public void onCallback(List<Song> restsList) {
-                
+            public void onCallback(List<Song> attractionsList) {
+            }
+            @Override
+            public void onCallBackUser(User user) {
+                tvName.setText(user.getFullName());
+                tvEmail.setText(user.getEmail());
+                tvPassword.setText(user.getPassword());
+                tvBirthday.setText(user.getBirthday());
+                tvBio.setText(user.getBio());
             }
         };
-
-
-        /*tvName.setText(user.getFullName());
-        tvEmail.setText(user.getEmail());
-        tvBirthday.setText(user.getBirthday());
-        tvBio.setText(user.getBio());
-        fbs = FirebaseServices.getInstance();
-        String email = fbs.getAuth().getCurrentUser().getEmail();
-        fbs.getFire().collection("users").get().*/
     }
 
     private void readData() {
         try {
-            fbs.getFire().collection("users")
-                    .get()
-                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            fbs.getFire().collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {
                                 for (QueryDocumentSnapshot document : task.getResult()) {
-                                    users.add(document.toObject(User.class));
+                                    if (document.toObject(User.class).getEmail().equals(fbs.getAuth().getCurrentUser().getEmail()))
+                                        user = document.toObject(User.class);
                                 }
-                                MyCallback.onCallBackUsers(users);
-
+                                myCallback.onCallBackUser(user);
                             } else {
-                                Log.e("AllRestActivity: readData()", "Error getting documents.", task.getException());
+                                Log.e("ProfileActivity: readData()", "Error getting documents.", task.getException());
                             }
                         }
                     });

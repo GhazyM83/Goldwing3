@@ -6,8 +6,7 @@ public interface MyCallback {
 
     void onCallback(List<Song> attractionsList);
 
-    static void onCallBackUsers(List<User> attractionsList) {
+    void onCallBackUser(User user);
 
-    }
 
 }
