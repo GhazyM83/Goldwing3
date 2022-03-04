@@ -70,7 +70,6 @@ public class Signup extends AppCompatActivity {
             photo = "no_image";
         else photo = StorageCode;
 
-
         if (!utils.EmailValidation(this, email) || !utils.PasswordValidation(this, password))
             return;
 
@@ -79,6 +78,20 @@ public class Signup extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            User user = new User(name, email, password, date, bio, photo);
+                            fbs.getFire().collection("users")
+                                    .add(user)
+                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                        @Override
+                                        public void onSuccess(DocumentReference documentReference) {
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w(TAG, "Failed to create a new account", e);
+                                        }
+                                    });
                             Toast.makeText(getApplicationContext(), "Account created successfully!", Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(getApplicationContext(), MainActivity.class);
                             startActivity(i);
@@ -88,22 +101,6 @@ public class Signup extends AppCompatActivity {
                         }
                     }
                 });
-
-        User user = new User(name, email, password, date, bio, photo);
-        fbs.getFire().collection("songs")
-                .add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Failed to create a new account", e);
-                    }
-                });
-
     }
 
     private void uploadImage()

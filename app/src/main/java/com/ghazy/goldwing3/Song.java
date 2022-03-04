@@ -2,11 +2,13 @@ package com.ghazy.goldwing3;
 
 import androidx.annotation.NonNull;
 
+import java.io.Serializable;
+
 enum songCategory{
     Pop, RnB, Rock, Country, Jazz, Soul, Rap, Kpop
 }
 
-public class Song {
+public class Song implements Serializable {
     private String songName;
     private String songLength;
     private String artistName;
