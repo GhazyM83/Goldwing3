@@ -38,7 +38,7 @@ public class AddSong extends AppCompatActivity {
     private FirebaseServices fbs;
     private Uri filePath;
     private StorageReference storageReference;
-    private String StorageCode;
+    private StorageReference ref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,6 @@ public class AddSong extends AppCompatActivity {
         spCategory = findViewById(R.id.spCategoryAddSong);
         ivCover = findViewById(R.id.ivCoverAddSong);
         fbs = FirebaseServices.getInstance();
-        StorageCode = "images/" + UUID.randomUUID().toString();
         spCategory.setAdapter(new ArrayAdapter<songCategory>(this, android.R.layout.simple_list_item_1, songCategory.values()));
         storageReference = fbs.getStorage().getReference();
     }
@@ -66,7 +65,7 @@ public class AddSong extends AppCompatActivity {
         category = spCategory.getSelectedItem().toString();
         if (ivCover.getDrawable() == null)
             photo = "no_image";
-        else photo = StorageCode;
+        else photo = ref.toString();
 
 
         if (name.trim().isEmpty() || artist.trim().isEmpty() || album.trim().isEmpty() ||
@@ -104,7 +103,11 @@ public class AddSong extends AppCompatActivity {
             progressDialog.show();
 
             // Defining the child of storageReference
-            StorageReference ref = storageReference.child("images/" + UUID.randomUUID().toString());
+            String fileNameStr = filePath.toString().substring(filePath.toString().lastIndexOf("/")+1);
+            ref = storageReference.child("images/" + fileNameStr);
+
+            //filePath.toString().substring(filePath.toString().lastIndexOf("/")+1);
+
 
             // adding listeners on upload
             // or failure of image

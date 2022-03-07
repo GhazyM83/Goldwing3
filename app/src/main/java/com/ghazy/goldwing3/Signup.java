@@ -37,7 +37,7 @@ public class Signup extends AppCompatActivity {
     private FirebaseServices fbs;
     private Utilities utils;
     private StorageReference storageReference;
-    private String StorageCode;
+    private StorageReference ref;
     private Uri filePath;
 
     @Override
@@ -54,7 +54,6 @@ public class Signup extends AppCompatActivity {
         ivPhoto = findViewById(R.id.ivPicSignup);
         fbs = FirebaseServices.getInstance();
         utils = Utilities.getInstance();
-        StorageCode = "images/" + UUID.randomUUID().toString();
         storageReference = fbs.getStorage().getReference();
 
     }
@@ -68,7 +67,7 @@ public class Signup extends AppCompatActivity {
         date = etDate.getText().toString();
         if (ivPhoto.getDrawable() == null)
             photo = "no_image";
-        else photo = StorageCode;
+        else photo = ref.toString();
 
         if (name.trim().isEmpty() || email.trim().isEmpty() || password.trim().isEmpty() || date.trim().isEmpty()) {
             Toast.makeText(this, "Some fields are empty!", Toast.LENGTH_SHORT).show();
@@ -118,7 +117,9 @@ public class Signup extends AppCompatActivity {
             progressDialog.show();
 
             // Defining the child of storageReference
-            StorageReference ref = storageReference.child(StorageCode);
+            /*String extension = filePath.toString().substring(filePath.toString().lastIndexOf('.'));
+            String fileNameStr = filePath.toString().substring(filePath.toString().lastIndexOf("/")+1);
+            ref = storageReference.child("images/" + fileNameStr + extension);*/
 
             // adding listeners on upload
             // or failure of image
