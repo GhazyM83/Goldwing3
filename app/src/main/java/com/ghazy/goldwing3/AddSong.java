@@ -39,6 +39,7 @@ public class AddSong extends AppCompatActivity {
     private Uri filePath;
     private StorageReference storageReference;
     private StorageReference ref;
+    private String downloadableURL = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +66,7 @@ public class AddSong extends AppCompatActivity {
         category = spCategory.getSelectedItem().toString();
         if (ivCover.getDrawable() == null)
             photo = "no_image";
-        else photo = ref.toString();
+        else photo = downloadableURL;
 
 
         if (name.trim().isEmpty() || artist.trim().isEmpty() || album.trim().isEmpty() ||
@@ -104,8 +105,8 @@ public class AddSong extends AppCompatActivity {
 
             // Defining the child of storageReference
             String fileNameStr = filePath.toString().substring(filePath.toString().lastIndexOf("/")+1);
-            ref = storageReference.child("images/" + fileNameStr);
-
+            StorageReference ref = storageReference.child("images/" + fileNameStr);
+            downloadableURL = ref.getDownloadUrl().toString();
             //filePath.toString().substring(filePath.toString().lastIndexOf("/")+1);
 
 
@@ -121,7 +122,7 @@ public class AddSong extends AppCompatActivity {
                             // Image uploaded successfully
                             // Dismiss dialog
                             progressDialog.dismiss();
-                            Toast.makeText(getApplicationContext(), "Image Uploaded!!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Image Uploaded!", Toast.LENGTH_SHORT).show();
                         }
                     })
 
