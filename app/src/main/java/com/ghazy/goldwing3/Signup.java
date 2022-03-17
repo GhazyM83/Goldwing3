@@ -5,13 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
+import android.content.ContentUris;
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -27,8 +34,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
-import java.util.UUID;
 
 public class Signup extends AppCompatActivity {
     private static final String TAG = "AddUser";
@@ -36,8 +41,10 @@ public class Signup extends AppCompatActivity {
     private ImageView ivPhoto;
     private FirebaseServices fbs;
     private Utilities utils;
+    private String fileNameStr;
     private StorageReference storageReference;
     private StorageReference ref;
+    private StorageReference ImageRef;
     private Uri filePath;
 
     @Override
@@ -117,9 +124,7 @@ public class Signup extends AppCompatActivity {
             progressDialog.show();
 
             // Defining the child of storageReference
-            /*String extension = filePath.toString().substring(filePath.toString().lastIndexOf('.'));
-            String fileNameStr = filePath.toString().substring(filePath.toString().lastIndexOf("/")+1);
-            ref = storageReference.child("images/" + fileNameStr + extension);*/
+            ref = storageReference.child(System.currentTimeMillis() + "." + getFileExtension(filePath));
 
             // adding listeners on upload
             // or failure of image
@@ -175,7 +180,6 @@ public class Signup extends AppCompatActivity {
                         filePath = data.getData();
                         Picasso.get().load(filePath).into(ivPhoto);
                         uploadImage();
-
                 }
             } else if (resultCode == Activity.RESULT_CANCELED)  {
                 Toast.makeText(this, "Canceled", Toast.LENGTH_SHORT).show();
@@ -186,5 +190,12 @@ public class Signup extends AppCompatActivity {
     public void goBack(View view) {
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
+
+    }
+
+    public String getFileExtension(Uri mUri){
+        ContentResolver cr = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cr.getType(mUri));
     }
 }

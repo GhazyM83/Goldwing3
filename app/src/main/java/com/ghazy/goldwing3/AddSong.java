@@ -5,13 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -26,9 +26,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
-import java.util.UUID;
-
 public class AddSong extends AppCompatActivity {
 
     private static final String TAG = "AddSong";
@@ -39,7 +36,6 @@ public class AddSong extends AppCompatActivity {
     private Uri filePath;
     private StorageReference storageReference;
     private StorageReference ref;
-    private String downloadableURL = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +62,7 @@ public class AddSong extends AppCompatActivity {
         category = spCategory.getSelectedItem().toString();
         if (ivCover.getDrawable() == null)
             photo = "no_image";
-        else photo = downloadableURL;
+        else photo = ref.toString();
 
 
         if (name.trim().isEmpty() || artist.trim().isEmpty() || album.trim().isEmpty() ||
@@ -104,10 +100,7 @@ public class AddSong extends AppCompatActivity {
             progressDialog.show();
 
             // Defining the child of storageReference
-            String fileNameStr = filePath.toString().substring(filePath.toString().lastIndexOf("/")+1);
-            StorageReference ref = storageReference.child("images/" + fileNameStr);
-            downloadableURL = ref.getDownloadUrl().toString();
-            //filePath.toString().substring(filePath.toString().lastIndexOf("/")+1);
+            ref = storageReference.child(System.currentTimeMillis() + "." + getFileExtension(filePath));
 
 
             // adding listeners on upload
@@ -172,5 +165,11 @@ public class AddSong extends AppCompatActivity {
                 Toast.makeText(this, "Canceled", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    public String getFileExtension(Uri mUri){
+        ContentResolver cr = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cr.getType(mUri));
     }
 }

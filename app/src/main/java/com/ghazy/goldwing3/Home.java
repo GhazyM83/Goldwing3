@@ -69,7 +69,6 @@ public class Home extends AppCompatActivity {
                                     songs.add(document.toObject(Song.class));
                                 }
                                 myCallback.onCallback(songs);
-
                             } else {
                                 Log.e("HomeActivity: readData()", "Error getting documents.", task.getException());
                             }
@@ -78,7 +77,7 @@ public class Home extends AppCompatActivity {
         }
         catch (Exception e)
         {
-            Toast.makeText(getApplicationContext(), "error reading!" + e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "error reading!", Toast.LENGTH_SHORT).show();
         }
 
         //for user details
@@ -100,7 +99,7 @@ public class Home extends AppCompatActivity {
         }
         catch (Exception e)
         {
-            Toast.makeText(getApplicationContext(), "error reading!" + e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "error reading!", Toast.LENGTH_SHORT).show();
         }
     }
 

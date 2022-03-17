@@ -46,8 +46,7 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(getApplicationContext(), "Welcome!", Toast.LENGTH_SHORT).show();
-                            Intent i = new Intent(getApplicationContext(), Home.class);
-                            i.putExtra("user", auth.getCurrentUser());
+                            Intent i = new Intent(getApplicationContext(), Profile.class);
                             startActivity(i);
                         } else {
                             Toast.makeText(Login.this, "Username or password is empty!", Toast.LENGTH_SHORT).show();
