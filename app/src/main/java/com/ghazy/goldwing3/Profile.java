@@ -53,7 +53,7 @@ public class Profile extends AppCompatActivity {
                 tvPassword.setText(user.getPassword());
                 tvBirthday.setText(user.getBirthday());
                 tvBio.setText(user.getBio());
-                //Picasso.get().load(user.getPhoto()).into(ivPhoto);
+                Picasso.get().load(user.getPhoto()).into(ivPhoto);
             }
         };
     }

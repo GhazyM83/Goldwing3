@@ -24,11 +24,11 @@ import java.util.List;
 public class Home extends AppCompatActivity {
     private RecyclerView rvAllSongs;
     private TextView tvWelcome;
-    RecyclerViewAdapter adapter;
-    FirebaseServices fbs;
-    ArrayList<Song> songs;
-    User user;
-    MyCallback myCallback;
+    private RecyclerViewAdapter adapter;
+    private FirebaseServices fbs;
+    private ArrayList<Song> songs;
+    private User user;
+    private MyCallback myCallback;
 
 
     @Override
@@ -82,7 +82,9 @@ public class Home extends AppCompatActivity {
 
         //for user details
         try {
-            fbs.getFire().collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            fbs.getFire().collection("users")
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if (task.isSuccessful()) {
