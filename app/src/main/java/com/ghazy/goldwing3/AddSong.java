@@ -20,11 +20,14 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
+
+import java.util.UUID;
 
 public class AddSong extends AppCompatActivity {
 
@@ -36,6 +39,7 @@ public class AddSong extends AppCompatActivity {
     private Uri filePath;
     private StorageReference storageReference;
     private StorageReference ref;
+    private String imageUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +54,9 @@ public class AddSong extends AppCompatActivity {
         ivCover = findViewById(R.id.ivCoverAddSong);
         fbs = FirebaseServices.getInstance();
         spCategory.setAdapter(new ArrayAdapter<songCategory>(this, android.R.layout.simple_list_item_1, songCategory.values()));
+        ref = fbs.getStorage().getReference();
         storageReference = fbs.getStorage().getReference();
+
     }
 
     public void add(View view) {
@@ -99,33 +105,29 @@ public class AddSong extends AppCompatActivity {
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
 
-            // Defining the child of storageReference
-            ref = storageReference.child(System.currentTimeMillis() + "." + getFileExtension(filePath));
-
+            ref = storageReference.child(UUID.randomUUID().toString() + "." + getFileExtension(filePath));
 
             // adding listeners on upload
             // or failure of image
             ref.putFile(filePath).addOnSuccessListener(
                     new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
-                        public void onSuccess(
-                                UploadTask.TaskSnapshot taskSnapshot)
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
                         {
-
                             // Image uploaded successfully
                             // Dismiss dialog
                             progressDialog.dismiss();
+                            //imageUrl = ref.getDownloadUrl().getResult().getEncodedPath();
                             Toast.makeText(getApplicationContext(), "Image Uploaded!", Toast.LENGTH_SHORT).show();
                         }
                     })
-
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e)
                         {
-
                             // Error, Image not uploaded
                             progressDialog.dismiss();
+                            Log.i("ggg", e.getMessage());
                             Toast.makeText(getApplicationContext(), "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     })

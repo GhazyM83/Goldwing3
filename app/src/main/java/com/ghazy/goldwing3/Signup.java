@@ -23,6 +23,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -33,6 +34,8 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
+
+import java.util.UUID;
 
 
 public class Signup extends AppCompatActivity {
@@ -46,6 +49,8 @@ public class Signup extends AppCompatActivity {
     private StorageReference ref;
     private StorageReference ImageRef;
     private Uri filePath;
+    private Task<Uri> URL;
+    private Uri imageUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,7 +129,7 @@ public class Signup extends AppCompatActivity {
             progressDialog.show();
 
             // Defining the child of storageReference
-            ref = storageReference.child(System.currentTimeMillis() + "." + getFileExtension(filePath));
+            ref = storageReference.child(UUID.randomUUID().toString() + "." + getFileExtension(filePath));
 
             // adding listeners on upload
             // or failure of image
