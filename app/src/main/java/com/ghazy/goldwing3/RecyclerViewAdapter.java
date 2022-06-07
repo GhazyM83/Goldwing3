@@ -4,6 +4,7 @@ package com.ghazy.goldwing3;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +35,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             Intent i = new Intent(context, SongDetails.class);
             i.putExtra("song", song);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(i);
+
+            try {
+                context.startActivity(i);
+            }
+            catch(Exception ex)
+            {
+                Log.e("RecAdapClickItem: ", ex.getMessage());
+            }
         }
     };
 

@@ -13,6 +13,7 @@ public class Song implements Serializable {
     private String songLength;
     private String artistName;
     private String albumName;
+    private String fileName;
     private songCategory category;
     private String credits;
     private String releaseDate;
@@ -23,7 +24,7 @@ public class Song implements Serializable {
     public Song() {
     }
 
-    public Song(String songName,String artistName, String albumName, songCategory category, String releaseDate, String songCover)
+    public Song(String songName,String artistName, String albumName, String fileName, songCategory category, String releaseDate, String songCover)
     {
         this.songName = songName;
         this.artistName = artistName;
@@ -31,21 +32,24 @@ public class Song implements Serializable {
         this.category = category;
         this.releaseDate = releaseDate;
         this.songCover = songCover;
+        this.fileName = fileName;
     }
 
-    public Song(String songName,String artistName, String albumName, songCategory category, String releaseDate) {
+    public Song(String songName,String artistName, String albumName, String fileName, songCategory category, String releaseDate) {
         this.songName = songName;
         this.artistName = artistName;
         this.albumName = albumName;
         this.category = category;
         this.releaseDate = releaseDate;
+        this.fileName = fileName;
     }
 
-    public Song(String songName, String songLength, String artistName, String albumName, songCategory category, String credits, String releaseDate, String lyrics, int streams, String songCover) {
+    public Song(String songName, String songLength, String artistName, String albumName, String fileName, songCategory category, String credits, String releaseDate, String lyrics, int streams, String songCover) {
         this.songName = songName;
         this.songLength = songLength;
         this.artistName = artistName;
         this.albumName = albumName;
+        this.fileName = fileName;
         this.category = category;
         this.credits = credits;
         this.releaseDate = releaseDate;
@@ -84,6 +88,14 @@ public class Song implements Serializable {
 
     public void setAlbumName(String albumName) {
         this.albumName = albumName;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
     public songCategory getCategory() {

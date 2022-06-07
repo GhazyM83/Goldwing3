@@ -32,7 +32,7 @@ import java.util.UUID;
 public class AddSong extends AppCompatActivity {
 
     private static final String TAG = "AddSong";
-    private EditText etName, etArtist, etAlbum, etDate;
+    private EditText etName, etArtist, etAlbum, etDate, etFile;
     private Spinner spCategory;
     private ImageView ivCover;
     private FirebaseServices fbs;
@@ -52,6 +52,7 @@ public class AddSong extends AppCompatActivity {
         etDate = findViewById(R.id.etDateAddSong);
         spCategory = findViewById(R.id.spCategoryAddSong);
         ivCover = findViewById(R.id.ivCoverAddSong);
+        etFile = findViewById(R.id.etFileAddSong);
         fbs = FirebaseServices.getInstance();
         spCategory.setAdapter(new ArrayAdapter<songCategory>(this, android.R.layout.simple_list_item_1, songCategory.values()));
         ref = fbs.getStorage().getReference();
@@ -60,11 +61,12 @@ public class AddSong extends AppCompatActivity {
     }
 
     public void add(View view) {
-        String name, artist, album, date, category, photo;
+        String name, artist, album, filename, date, category, photo;
         name = etName.getText().toString();
         artist = etArtist.getText().toString();
         album = etAlbum.getText().toString();
         date = etDate.getText().toString();
+        filename = etFile.getText().toString();
         category = spCategory.getSelectedItem().toString();
         if (ivCover.getDrawable() == null)
             photo = "no_image";
@@ -72,12 +74,12 @@ public class AddSong extends AppCompatActivity {
 
 
         if (name.trim().isEmpty() || artist.trim().isEmpty() || album.trim().isEmpty() ||
-                date.trim().isEmpty() || category.trim().isEmpty() || photo.trim().isEmpty()) {
+                date.trim().isEmpty() || category.trim().isEmpty() || filename.trim().isEmpty()) {
             Toast.makeText(this, "Some fields are empty!", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        Song song = new Song(name, artist, album, songCategory.valueOf(category), date, photo);
+        Song song = new Song(name, artist, album, filename, songCategory.valueOf(category), date, photo);
         fbs.getFire().collection("songs")
                 .add(song)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

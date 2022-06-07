@@ -38,4 +38,9 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(getApplicationContext(), Home.class);
         startActivity(i);
     }
+
+    public void goToPlay(View view) {
+        Intent i = new Intent(getApplicationContext(), SongDetails.class);
+        startActivity(i);
+    }
 }

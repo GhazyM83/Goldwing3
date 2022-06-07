@@ -39,6 +39,22 @@
         app:layout_constraintTop_toBottomOf="@+id/tvTitleAddSong" />
 
     <EditText
+        android:id="@+id/etFileAddSong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="101dp"
+        android:ems="10"
+        android:hint="File name of song..."
+        android:inputType="textPersonName"
+        android:textColor="@color/gold"
+        android:textColorHint="@color/gold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etDateAddSong" />
+
+    <EditText
         android:id="@+id/etArtistAddSong"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -100,8 +116,8 @@
 
     <ImageView
         android:id="@+id/ivCoverAddSong"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="124dp"
+        android:layout_height="119dp"
         android:layout_marginStart="130dp"
         android:layout_marginEnd="130dp"
         android:layout_marginBottom="28dp"
@@ -109,7 +125,7 @@
         android:onClick="selectPhoto"
         app:layout_constraintBottom_toTopOf="@+id/btnAddAddSong"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/add" />
 
@@ -119,14 +135,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="147dp"
         android:layout_marginEnd="153dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="28dp"
         android:backgroundTint="@color/gold"
         android:onClick="add"
         android:text="Add Song"
         android:textColor="@color/dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

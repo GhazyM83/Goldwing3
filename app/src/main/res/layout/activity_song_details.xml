@@ -51,28 +51,80 @@
         android:id="@+id/tvAlbumNameSongDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="55dp"
-        android:layout_marginEnd="14dp"
-        android:layout_marginBottom="260dp"
+        android:layout_marginStart="156dp"
+        android:layout_marginBottom="256dp"
         android:text="Album Name"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tvSongLengthSongDetails"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/tvSongLengthSongDetails"
+    <Button
+        android:id="@+id/btPlaySongDetails"
+        android:onClick="playBtnClick"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="55dp"
+        android:backgroundTint="@color/gold"
+        android:text="Play"
+        android:textColor="@color/dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btStopSongDetails"
+        android:onClick="playBtnClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginBottom="260dp"
-        android:text="Song Length"
-        android:textColor="@color/white"
-        android:textSize="20sp"
+        android:layout_marginStart="136dp"
+        android:layout_marginEnd="51dp"
+        android:layout_marginBottom="52dp"
+        android:backgroundTint="@color/gold"
+        android:text="Stop"
+        android:textColor="@color/dark"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvAlbumNameSongDetails"
-        app:layout_constraintTop_toBottomOf="@+id/tvSongNameSongDetails" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/btPlaySongDetails" />
+
+    <SeekBar
+        android:id="@+id/positionBar"
+        android:layout_width="254dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="78dp"
+        android:layout_marginTop="49dp"
+        android:layout_marginEnd="79dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAlbumNameSongDetails" />
+
+    <TextView
+        android:id="@+id/remainingTimeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="188dp"
+        android:layout_marginEnd="71dp"
+        android:layout_marginBottom="20dp"
+        android:text="2:00"
+        android:textColor="@color/gold"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/btStopSongDetails"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/elapsedTimeLabel" />
+
+    <TextView
+        android:id="@+id/elapsedTimeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="67dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginBottom="17dp"
+        android:text="0:00"
+        android:textColor="@color/gold"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/btPlaySongDetails"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/positionBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
