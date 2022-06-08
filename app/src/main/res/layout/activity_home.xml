@@ -33,7 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toBottomOf="@+id/ivPhotoHome" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -68,7 +68,7 @@
         app:srcCompat="@drawable/library" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/ivPhotoHome"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="139dp"

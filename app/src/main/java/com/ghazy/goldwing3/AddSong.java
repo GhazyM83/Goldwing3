@@ -70,7 +70,7 @@ public class AddSong extends AppCompatActivity {
         category = spCategory.getSelectedItem().toString();
         if (ivCover.getDrawable() == null)
             photo = "no_image";
-        else photo = ref.toString();
+        else photo = ref.getPath();
 
 
         if (name.trim().isEmpty() || artist.trim().isEmpty() || album.trim().isEmpty() ||

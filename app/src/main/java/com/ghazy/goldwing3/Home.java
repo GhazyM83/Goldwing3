@@ -6,24 +6,32 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Home extends AppCompatActivity {
     private RecyclerView rvAllSongs;
+    private final StorageReference storageRef = FirebaseServices.getInstance().getStorage().getReference();
     private TextView tvWelcome;
+    private ImageView ivPhoto;
     private RecyclerViewAdapter adapter;
     private FirebaseServices fbs;
     private ArrayList<Song> songs;
@@ -38,6 +46,7 @@ public class Home extends AppCompatActivity {
         getSupportActionBar().hide();
 
         tvWelcome = findViewById(R.id.tvWelcomeHome);
+        ivPhoto = findViewById(R.id.ivPhotoProfile);
         fbs = FirebaseServices.getInstance();
         songs = new ArrayList<Song>();
         readData();
@@ -50,8 +59,19 @@ public class Home extends AppCompatActivity {
                 recyclerView.setAdapter(adapter);
             }
             @Override
-            public void onCallBackUser(User user) {
-                tvWelcome.setText("Welcome, " + user.getFullName() + "!");
+            public void onCallBackUser(User myUser) {
+                tvWelcome.setText("Welcome, " + myUser.getFullName() + "!");
+                storageRef.child(myUser.getPhoto()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Picasso.get().load(uri).into(ivPhoto);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getApplicationContext(), "error getting photo", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         };
     }

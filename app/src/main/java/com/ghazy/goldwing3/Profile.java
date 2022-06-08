@@ -53,7 +53,7 @@ public class Profile extends AppCompatActivity {
                 tvPassword.setText(user.getPassword());
                 tvBirthday.setText(user.getBirthday());
                 tvBio.setText(user.getBio());
-                Picasso.get().load(user.getPhoto()).into(ivPhoto);
+                Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/goldwing-24a26.appspot.com/o/1647553474125.png?alt=media&token=cc5186df-2a58-496d-a921-2c4ed27872c6").into(ivPhoto);
             }
         };
     }

@@ -8,9 +8,21 @@ public class Collection {
     private String collectionName;
     private String collectionArtist;
     private int numOfSongs;
-    private collectionType Type;
+    private collectionType collectionType;
     private String date;
     private String collectionCover;
+
+    public Collection() {
+    }
+
+    public Collection(String collectionName, String collectionArtist, int numOfSongs, collectionType collectionType, String date, String collectionCover) {
+        this.collectionName = collectionName;
+        this.collectionArtist = collectionArtist;
+        this.numOfSongs = numOfSongs;
+        this.collectionType = collectionType;
+        this.date = date;
+        this.collectionCover = collectionCover;
+    }
 
     public String getCollectionName() {
         return collectionName;
@@ -37,11 +49,11 @@ public class Collection {
     }
 
     public collectionType getType() {
-        return Type;
+        return collectionType;
     }
 
     public void setType(collectionType type) {
-        Type = type;
+        collectionType = type;
     }
 
     public String getDate() {
@@ -66,7 +78,7 @@ public class Collection {
                 "collectionName='" + collectionName + '\'' +
                 ", collectionArtist='" + collectionArtist + '\'' +
                 ", numOfSongs=" + numOfSongs +
-                ", Type=" + Type +
+                ", Type=" + collectionType +
                 ", date='" + date + '\'' +
                 ", collectionCover='" + collectionCover + '\'' +
                 '}';

@@ -23,7 +23,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -49,8 +48,6 @@ public class Signup extends AppCompatActivity {
     private StorageReference ref;
     private StorageReference ImageRef;
     private Uri filePath;
-    private Task<Uri> URL;
-    private Uri imageUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +76,7 @@ public class Signup extends AppCompatActivity {
         date = etDate.getText().toString();
         if (ivPhoto.getDrawable() == null)
             photo = "no_image";
-        else photo = ref.toString();
+        else photo = ref.getPath();
 
         if (name.trim().isEmpty() || email.trim().isEmpty() || password.trim().isEmpty() || date.trim().isEmpty()) {
             Toast.makeText(this, "Some fields are empty!", Toast.LENGTH_SHORT).show();

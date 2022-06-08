@@ -1,5 +1,6 @@
 package com.ghazy.goldwing3;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,7 +15,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
@@ -27,6 +31,8 @@ public class SongDetails extends AppCompatActivity {
     private TextView elapsedTimeLabel, remainingTimeLabel;
     private MediaPlayer mp;
     private int totalTime;
+    private StorageReference storageRef = FirebaseServices.getInstance().getStorage().getReference();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +47,19 @@ public class SongDetails extends AppCompatActivity {
         tvSongName.setText(song.getSongName());
         tvArtistName.setText(song.getArtistName());
         tvAlbumName.setText(song.getAlbumName());
+
+        storageRef.child(song.getSongCover()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).into(ivCover);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(), "error getting photo", Toast.LENGTH_SHORT).show();
+            }
+        });
         //source = getResources().getDrawable(R.raw.tun, );
-        //Picasso.get().load(String.valueOf(storageRef.child(song.getSongCover()).getDownloadUrl())).into(ivCover);
         playBtn = findViewById(R.id.btPlaySongDetails);
         elapsedTimeLabel = findViewById(R.id.elapsedTimeLabel);
         remainingTimeLabel = findViewById(R.id.remainingTimeLabel);
